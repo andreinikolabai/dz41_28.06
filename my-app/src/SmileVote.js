@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const SmileVote = () => {
-    const [smileys, setSmileys] = useState([
+    const [smiles, setSmiles] = useState([
         { id: 1, name: '😃', count: 0 },
         { id: 2, name: '😊', count: 0 },
         { id: 3, name: '🥳', count: 0 },
@@ -10,17 +10,17 @@ const SmileVote = () => {
     const [winner, setWinner] = useState(null);
 
     const handleVote = (id) => {
-        setSmileys((prevSmileys) =>
-            prevSmileys.map((smiley) =>
-                smiley.id === id ? { ...smiley, count: smiley.count + 1 } : smiley
+        setSmiles((prevSmiles) =>
+            prevSmiles.map((smile) =>
+                smile.id === id ? { ...smile, count: smile.count + 1 } : smile
             )
         );
     };
 
     const handleShowResults = () => {
-        const maxCount = Math.max(...smileys.map((smiley) => smiley.count));
-        const winningSmiley = smileys.find((smiley) => smiley.count === maxCount);
-        setWinner(winningSmiley);
+        const maxCount = Math.max(...smiles.map((smile) => smile.count));
+        const winningSmile = smiles.find((smile) => smile.count === maxCount);
+        setWinner(winningSmile);
         setShowResults(true);
     };
 
@@ -28,11 +28,11 @@ const SmileVote = () => {
         <div>
             <h1>Голосування за найкращий смайлик</h1>
             <ul>
-                {smileys.map((smiley) => (
-                    <li key={smiley.id}>
-                        <span>{smiley.name}</span>
-                        <button onClick={() => handleVote(smiley.id)}>Голосувати</button>
-                        <span>  Кількість голосів: {smiley.count}</span>
+                {smiles.map((smile) => (
+                    <li key={smile.id}>
+                        <span>{smile.name}</span>
+                        <button onClick={() => handleVote(smile.id)}>Голосувати</button>
+                        <span>  Кількість голосів: {smile.count}</span>
                     </li>
                 ))}
             </ul>
